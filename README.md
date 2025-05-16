@@ -1,6 +1,4 @@
-Sure! Here's a polished and icon-rich **README.md** content for **BlogVoci** fully inside a code block for easy copy-pasting:
 
-````markdown
 # 📝 BlogVoci — Voices Through Blogs 🗣️
 
 **BlogVoci** combines **"Blog"** 📰 (content) and **"Voci"** 🗣️ (Italian for "voices") — a platform for sharing diverse ideas and perspectives through writing.
