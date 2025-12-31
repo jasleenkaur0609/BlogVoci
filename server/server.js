@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 // Route imports
 import authRoutes from "./routes/authRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -22,6 +23,8 @@ app.use(express.json());
 // API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
+app.use("/api/comments", commentRoutes);
+
 
 // Root test route
 app.get("/", (req, res) => {
@@ -36,6 +39,10 @@ app.use((err, req, res, next) => {
     message: err.message || "Internal Server Error",
   });
 });
+
+app.use("/api/auth", authRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/comments", commentRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
