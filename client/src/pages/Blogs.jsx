@@ -238,17 +238,16 @@ const Blogs = () => {
           />
           <select value={category} onChange={e => setCategory(e.target.value)}>
             <option>All</option>
-<option>Web Development</option>
-<option>Frontend</option>
-<option>Backend</option>
-<option>UI/UX</option>
-<option>Database</option>
-<option>Security</option>
-<option>Productivity</option>
-<option>Career</option>
-<option>Product</option>
-<option>Marketing</option>
-
+            <option>Web Development</option>
+            <option>Frontend</option>
+            <option>Backend</option>
+            <option>UI/UX</option>
+            <option>Database</option>
+            <option>Security</option>
+            <option>Productivity</option>
+            <option>Career</option>
+            <option>Product</option>
+            <option>Marketing</option>
           </select>
         </div>
 
