@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -24,7 +25,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/comments", commentRoutes);
-
+app.use("/api/users", userRoutes);
 
 // Root test route
 app.get("/", (req, res) => {

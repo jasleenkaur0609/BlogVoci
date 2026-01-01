@@ -1,36 +1,49 @@
 import express from "express";
+
+/* CONTROLLERS */
 import {
   createBlog,
   getAllBlogs,
   getSingleBlog,
   updateBlog,
   deleteBlog,
-  toggleLike,
-} from "../controllers/blogController.js";
-import { adminOnly } from "../middleware/authMiddleware.js";
-import {
   adminDeleteBlog,
   toggleFeaturedBlog,
 } from "../controllers/blogController.js";
 
+import {
+  toggleLikeBlog,
+  toggleSaveBlog,
+} from "../controllers/blogActionController.js";
 
-import { protect } from "../middleware/authMiddleware.js";
+/* MIDDLEWARE */
+import { protect, adminOnly } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Public routes
+/* =========================
+   🌍 PUBLIC ROUTES
+========================= */
 router.get("/", getAllBlogs);
 router.get("/:id", getSingleBlog);
 
-// Protected routes
+/* =========================
+   🔐 USER PROTECTED ROUTES
+========================= */
 router.post("/", protect, createBlog);
 router.put("/:id", protect, updateBlog);
 router.delete("/:id", protect, deleteBlog);
-router.post("/:id/like", protect, toggleLike);
 
-// 🛡 Admin routes
+/* =========================
+   ❤️ USER ACTION ROUTES
+========================= */
+router.put("/like/:blogId", protect, toggleLikeBlog);
+router.put("/save/:blogId", protect, toggleSaveBlog);
+
+/* =========================
+   🛡 ADMIN ROUTES
+========================= */
 router.delete("/admin/:id", protect, adminOnly, adminDeleteBlog);
 router.put("/admin/feature/:id", protect, adminOnly, toggleFeaturedBlog);
-
 
 export default router;

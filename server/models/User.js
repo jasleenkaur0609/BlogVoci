@@ -44,6 +44,13 @@ const userSchema = new mongoose.Schema(
       linkedin: String,
       twitter: String,
     },
+    likedBlogs: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Blog" }
+    ],
+
+    savedBlogs: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Blog" }
+    ],
 
     isBlocked: {
       type: Boolean,
