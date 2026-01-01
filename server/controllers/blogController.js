@@ -125,6 +125,45 @@ export const deleteBlog = async (req, res) => {
   }
 };
 
+// 🛡 Admin: Delete any blog
+export const adminDeleteBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    await blog.deleteOne();
+    res.json({ message: "Blog deleted by admin" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete blog" });
+  }
+};
+
+// ⭐ Admin: Feature / Unfeature blog
+export const toggleFeaturedBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    blog.featured = !blog.featured;
+    await blog.save();
+
+    res.json({
+      message: blog.featured
+        ? "Blog featured successfully"
+        : "Blog unfeatured successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update blog" });
+  }
+};
+
+
 // ❤️ Like / Unlike Blog
 export const toggleLike = async (req, res) => {
   try {

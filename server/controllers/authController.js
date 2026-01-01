@@ -97,3 +97,25 @@ export const loginUser = async (req, res) => {
     });
   }
 };
+
+// 🛡 Admin: Block / Unblock user
+export const toggleBlockUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.isBlocked = !user.isBlocked;
+    await user.save();
+
+    res.json({
+      message: user.isBlocked
+        ? "User blocked successfully"
+        : "User unblocked successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update user status" });
+  }
+};

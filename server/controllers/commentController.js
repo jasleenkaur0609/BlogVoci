@@ -88,6 +88,26 @@ export const updateComment = async (req, res) => {
   }
 };
 
+// 🛡 Admin: Delete any comment
+export const adminDeleteComment = async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.id);
+
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    comment.isDeleted = true;
+    comment.content = "This comment was removed by admin";
+
+    await comment.save();
+    res.json({ message: "Comment deleted by admin" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete comment" });
+  }
+};
+
+
 // 🗑 Delete comment (soft delete)
 export const deleteComment = async (req, res) => {
   try {
