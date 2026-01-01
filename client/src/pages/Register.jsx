@@ -102,7 +102,7 @@ const Register = () => {
       setAttempts(0);
       setCaptchaChecked(false);
 
-      setTimeout(() => navigate("/"), 1200);
+      setTimeout(() => navigate("/login"), 1200);
     } catch (error) {
       const message =
         error?.response?.data?.message ||

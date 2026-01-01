@@ -65,7 +65,7 @@ const Login = () => {
       showToast("success", "Login successful 🎉");
 
       setForm(initialForm);
-      setTimeout(() => navigate("/"), 1200);
+      setTimeout(() => navigate("/feed"), 1200);
     } catch (error) {
       const message =
         error?.response?.data?.message ||
